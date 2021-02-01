@@ -1,8 +1,9 @@
-import 'package:alura_bank/models/Usuario_2.dart';
-import 'package:alura_bank/models/usuario_1.dart';
 import 'package:flutter/material.dart';
-import 'package:alura_bank/screens/home.dart';
 import 'package:provider/provider.dart';
+
+import 'package:provider_app/models/player.dart';
+import 'package:provider_app/screens/home.dart';
+import 'package:provider_app/screens/criacao_de_personagem.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,8 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider<Usuario1>(create: (context) => Usuario1()),
-          ChangeNotifierProvider<Usuario2>(create: (context) => Usuario2()),
+          ChangeNotifierProvider<Player>(create: (context) => Player()),
         ],
         child: MaterialApp(
           theme: ThemeData(
@@ -24,7 +24,11 @@ class MyApp extends StatelessWidget {
             ),
             scaffoldBackgroundColor: Colors.grey,
           ),
-          home: Home(),
+          home: HomePage(),
+          routes: {
+            '/home': (_) => HomePage(),
+            '/cria_perfil': (_) => CriaPersonagemPage(),
+          },
         ));
   }
 }

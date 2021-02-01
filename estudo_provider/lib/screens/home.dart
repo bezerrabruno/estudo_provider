@@ -1,54 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:alura_bank/components/card_home.dart';
-import 'package:alura_bank/models/usuario_1.dart';
-import 'package:alura_bank/models/Usuario_2.dart';
+import 'package:provider_app/components/card_home.dart';
 
-class Home extends StatelessWidget {
+const _titulo_appBar = 'Home';
+const _titulo_botao_1 = 'Aventura';
+
+class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(),
-      body: _tela(context),
-    );
+    return _tela(context);
   }
 
   Widget _tela(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        CardHome(),
+    return Scaffold(
+      appBar: _appBar(context),
+      body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        CardPerfil(),
         RaisedButton(
-            child: Text('Add Usuario'),
-            onPressed: () {
-              Provider.of<Usuario1>(context, listen: false)
-                  .addUsuario('Cleber', 'Pereira', 20);
-            }),
-        RaisedButton(
-            child: Text('Remove Usuario'),
-            onPressed: () {
-              Provider.of<Usuario1>(context, listen: false)
-                  .addUsuario('Null', 'Null', 0);
-            }),
-        RaisedButton(
-            child: Text('Add Usuario Test'),
-            onPressed: () {
-              Provider.of<Usuario2>(context, listen: false)
-                  .addUsuario('João', 'Vacontes', 36);
-            }),
-        RaisedButton(
-            child: Text('Remove Usuario Test'),
-            onPressed: () {
-              Provider.of<Usuario2>(context, listen: false)
-                  .addUsuario('Null', 'Null', 0);
-            }),
-      ],
+          child: const Text(_titulo_botao_1),
+          onPressed: () => true,
+        ),
+      ]),
     );
   }
 
-  Widget _appBar() {
+  Widget _appBar(BuildContext context) {
     return AppBar(
-      title: const Text('Provider'),
+      title: Text(_titulo_appBar),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.person_add_alt_1_outlined),
+          onPressed: () => Navigator.pushNamed(context, '/cria_perfil'),
+        )
+      ],
     );
   }
 }

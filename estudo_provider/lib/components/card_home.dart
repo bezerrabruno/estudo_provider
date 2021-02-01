@@ -1,60 +1,47 @@
-import 'package:alura_bank/models/Usuario_2.dart';
-import 'package:alura_bank/models/usuario_1.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CardHome extends StatelessWidget {
+import 'package:provider_app/models/player.dart';
+
+class CardPerfil extends StatelessWidget {
   Widget build(context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 48.0),
-      child: SizedBox(
-        height: 168,
-        child: Card(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                _usuario1(context),
-                _usuario2(context),
-              ],
+      padding: EdgeInsets.all(16),
+      child: Row(children: [
+        SizedBox(
+          width: 250,
+          height: 200,
+          child: Card(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: _player(context),
             ),
           ),
         ),
-      ),
+        SizedBox(
+          width: 100,
+          height: 200,
+          child: Card(
+            child: SizedBox(),
+          ),
+        ),
+      ]),
     );
   }
 
-  Widget _usuario1(BuildContext context) {
-    return Consumer<Usuario1>(builder: (context, user, _) {
-      return ListTile(
-        title: Text(
-          '${user.nome} ${user.sobrenome}',
-          style: TextStyle(fontSize: 25),
-        ),
-        subtitle: Text(
-          '${user.idade}',
-          style: TextStyle(fontSize: 25),
-        ),
-      );
-    });
-  }
-
-  Widget _usuario2(BuildContext context) {
-    return Consumer<Usuario2>(builder: (context, user, _) {
-      return ListTile(
-        title: Text(
-          '${user.nome} ${user.sobrenome}',
-          style: TextStyle(fontSize: 25),
-        ),
-        subtitle: Text(
-          '${user.idade}',
-          style: TextStyle(fontSize: 25),
-        ),
+  Widget _player(BuildContext context) {
+    return Consumer<Player>(builder: (context, user, _) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Nome: ${user.nome}', style: TextStyle(fontSize: 25)),
+          Text('Raça: ${user.raca}', style: TextStyle(fontSize: 25)),
+          Text('Nivel: ${user.nivel}', style: TextStyle(fontSize: 25)),
+          Text('Vida: ${user.vida}', style: TextStyle(fontSize: 25)),
+          Text('Attk: ${user.attk}', style: TextStyle(fontSize: 25)),
+          Text('Def: ${user.def}', style: TextStyle(fontSize: 25)),
+        ],
       );
     });
   }
 }
-
-/*Consumer<Usuario1>(builder: (context, user, _){
-                      return _usuario(user.nome, user.sobrenome, user.idade);
-                      }*/
