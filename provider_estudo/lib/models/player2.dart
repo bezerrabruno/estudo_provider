@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Player extends ChangeNotifier {
+class Player2 extends ChangeNotifier {
   String nome = 'Null';
   String raca = 'Null';
   String cls = 'Null';
@@ -27,15 +27,20 @@ class Player extends ChangeNotifier {
     notifyListeners();
   }
 
-  void carrega_player(Player player) {
-    this.nome = player.nome;
-    this.raca = player.raca;
-    this.cls = player.cls;
+  void up_level() {
+    this.nivel += 1;
+    this.attk += 5;
+    this.def += 5;
+    this.vida += 5;
 
-    this.nivel = player.nivel;
-    this.attk = player.attk;
-    this.def = player.def;
-    this.vida = player.vida;
+    notifyListeners();
+  }
+
+  void down_level() {
+    this.nivel -= 1;
+    this.attk -= 5;
+    this.def -= 5;
+    this.vida -= 5;
 
     notifyListeners();
   }

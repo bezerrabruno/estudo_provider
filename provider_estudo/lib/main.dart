@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:provider_app/models/player.dart';
+import 'package:provider_app/models/player1.dart';
+import 'package:provider_app/models/player2.dart';
 import 'package:provider_app/screens/home.dart';
 import 'package:provider_app/screens/criacao_de_personagem.dart';
 
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider<Player>(create: (context) => Player()),
+          ChangeNotifierProvider<Player1>(create: (context) => Player1()),
+          ChangeNotifierProvider<Player2>(create: (context) => Player2()),
         ],
         child: MaterialApp(
           theme: ThemeData(
